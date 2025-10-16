@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .board {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .cell {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="board"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const board = $(".board");
+        let currentPlayer = "X";
+        
+        for (let i = 0; i < 9; i++) {
+            const cell = $("<div>")
+                .addClass("cell")
+                .attr("data-index", i)
+                .on("click", function() {
+                    if ($(this).text() === "") {
+                        $(this).text(currentPlayer);
+                        currentPlayer = currentPlayer === "X" ? "O" : "X";
+                    }
+                });
+            board.append(cell);
+        }
+    </script>
+</body>
+</html>
